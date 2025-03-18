@@ -87,12 +87,12 @@
             }, 1500);
         });
 
-        // Mencegah Klik Kanan
+        // Mencegah Klik Kanan di Seluruh Halaman
         document.addEventListener("contextmenu", function (event) {
             event.preventDefault();
         });
 
-        // Mencegah Kombinasi Tombol DevTools (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, dll)
+        // Mencegah Kombinasi Tombol View Source & DevTools
         document.addEventListener("keydown", function (event) {
             if (event.key === "F12" || 
                 (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || 
@@ -101,7 +101,7 @@
             }
         });
 
-        // Deteksi Developer Tools Aktif (Kalau Dibuka, Halaman Akan Diblur)
+        // Deteksi Developer Tools Aktif (Kalau Dibuka, Halaman Langsung Blur)
         setInterval(function () {
             if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
                 document.body.style.filter = "blur(5px)";
