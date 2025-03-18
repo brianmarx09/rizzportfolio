@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizz.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Video Fullscreen */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Halaman Konten */
+        .content {
+            display: none; /* Awalnya tersembunyi */
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            color: black;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            opacity: 0; /* Mulai dari 0 agar bisa fade-in */
+            transition: opacity 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video Container -->
+    <div class="video-container" id="videoContainer">
+        <video autoplay playsinline id="gunbarrelVideo">
+            <source src="spectre.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+    </div>
+
+    <!-- Konten Setelah Video -->
+    <div class="content" id="content">
+        
+    </div>
+
+    <script>
+        const video = document.getElementById("gunbarrelVideo");
+        const videoContainer = document.getElementById("videoContainer");
+        const content = document.getElementById("content");
+
+        video.addEventListener("ended", function () {
+            // Fade out video
+            videoContainer.style.opacity = "0";
+
+            // Setelah 1.5 detik (waktu fade out), sembunyikan video dan tampilkan konten dengan efek fade-in
+            setTimeout(() => {
+                videoContainer.style.display = "none";
+                content.style.display = "flex";
+                setTimeout(() => {
+                    content.style.opacity = "1"; // Efek fade-in konten
+                    location.href = "home.html";
+                }, 50); // Delay kecil agar transisi berjalan lancar
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>
